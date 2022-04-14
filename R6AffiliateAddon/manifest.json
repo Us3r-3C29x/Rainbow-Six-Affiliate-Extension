@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Rainbow Six | DE | Affiliate",
+  "description": "Mit diesem Extension unterstützt du durch jeden Kauf bei Amazon kostenlos und vollautomatisch den Rainbow Six DE Discord Server!",
+  "version": "1.0",
+    "icons": { "16": "images/icon16.png",
+			"32": "images/icon32.png",
+           "48": "images/icon48.png",
+          "128": "images/icon128.png" },
+   "browser_action": {
+   },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.amazon.com/*",
+		"https://*.amazon.de/*"
+      ],
+      "js": ["jquery-3.0.0.js", "content.js"]
+    }
+  ]
+}
