@@ -35,16 +35,21 @@ function getDomain() {
   var currentDomain = getDomain();
   var linkDomain = (currentDomain.match(/amazon\./i) ? currentDomain : "amazon.com");
 
+  // Correct the URL if wrong
+if (window.location.href.includes(affID) == false  && ((window.location.href.includes("/obidos/") || window.location.href.includes("/o/") || window.location.href.includes("/dp/") || window.location.href.includes("/product/")) == true)) { 
+  var curAsin = getASIN(window.location.href)
+  console.log(curAsin)
+  window.location = ("http://"+linkDomain+"/o/ASIN/" + curAsin + "/ref=nosim/"+affID);
+}
+
   // Get All Of Our Links And Loop
   var allLinks = document.getElementsByTagName("a");
   for (i = 0; i < allLinks.length; i++) {
     var href = allLinks[i].href;
     if (href.match(/amazon\./i)) {
      var asin = getASIN(href);
-      if (asin != null) {    if (window.location.href.includes(affID) == false && ((window.location.href.includes("/obidos/") || window.location.href.includes("/o/") || window.location.href.includes("/dp/") || window.location.href.includes("/product/")) == true)) 
-		  { window.location.replace("ref=nosim/"+affID)};
-		allLinks[i].setAttribute("href", "http://"+linkDomain+"/o/ASIN/" + asin + "/ref=nosim/"+affID);
-	}
+      if (asin != null) {    allLinks[i].setAttribute("href", "http://"+linkDomain+"/o/ASIN/" + asin + "/ref=nosim/"+affID);}
     }
   }
+  
 })();
